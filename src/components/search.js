@@ -1,8 +1,8 @@
 angular.module('video-player')
 
 .component('search', {
-  controller: function() {
-
+  bindings: {
+    youTube: '<'
   },
 
   templateUrl: 'src/templates/search.html'

@@ -2,12 +2,11 @@ angular.module('video-player')
 
 .component('videoPlayer', {
   controller: function() {
-    console.log(this);
   },
 
   bindings: {
     video: '<',
-    id: '@'
+    url: '<'
   },
 
   templateUrl: 'src/templates/videoPlayer.html'
