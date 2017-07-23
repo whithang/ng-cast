@@ -5,7 +5,6 @@ angular.module('video-player')
   //   console.log(this, "videoplayer");
   // },
   
-  
   bindings: {
     videos: '<',
     search: '<'

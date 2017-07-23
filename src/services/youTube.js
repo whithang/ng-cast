@@ -1,24 +1,25 @@
 angular.module('video-player')
-.service('youTube', function($http) {
+.service('youTube', function($http, $window) {
   // name must match argument from controller of function
-  this.getVideos = function(query, callback) {
-    return $http({
-      method: 'GET',
-      url: 'https://www.googleapis.com/youtube/v3/search',
+    
+  this.getVideos = function(query, apiKey, callback) {
+    // console.log(window.YOUTUBE_API_KEY);
+    $http.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         part: 'snippet',
-        max: 5,
-        key: window.YOUTUBE_API_KEY,
+        maxResults: 5,
+        key: $window.YOUTUBE_API_KEY,
         q: query,
         videoEmbeddable: 'true',
         type: 'video',
       },
-      dataType: 'json',
-    }).then(function successCallback(response) {
+    })
+    .then(function(response) {
       console.log('youtube service successful!', response);
-      callback(response);
-    }, function errorCallback(response) {
+      callback(response.data.items);
+    })
+    .catch(function(response) {
       console.log('youtube service fail', response);
-    });
+    });  
   };
 });
